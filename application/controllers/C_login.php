@@ -8,7 +8,6 @@ class C_login extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_login', 'login');
-        $this->load->helper('cookie');
     }
 
     public function index()
@@ -19,36 +18,10 @@ class C_login extends CI_Controller
 
     public function login()
     {
-
-        if (isset($_COOKIE['authuser'])) {
-            $id = $_COOKIE['authuser'];
-            if ($this->login->cekDataById([$this->req->encKey('id') => $id]) == true) {
-                
-                $userData = $this->login->getData();
-                if ($userData->status == 1) {
-                    $session = array(
-                        'id_user'   => $userData->id,
-                        'username'  => $userData->username,
-                        'level'     => $userData->level,
-                        'nama_user' => $userData->nama_user,
-                        'logged_in' => true,
-                    );
-                    // var_dump($session);
-                    $this->session->set_userdata($session);
-
-                    $this->input->set_cookie('authuser', $this->req->acak($userData->id), time() + (86400 * 30));
-
-                    redirect('admin/dashboard', 'refresh');
-                
-                }else{
-                    $this->session->set_flashdata('warning', "Akun anda tidak aktif");
-                    redirect('admin/login', 'refresh');
-                }
-
-            }
-        }else{
-            $this->load->view('admin/v_login');
-        }
+        $data = array(
+            // 'script' => 'login',
+        );
+        $this->load->view('admin/v_login', $data);
     }
 
     function aksi()
@@ -72,15 +45,11 @@ class C_login extends CI_Controller
                 );
                 // var_dump($session);
                 $this->session->set_userdata($session);
-
-                $this->input->set_cookie('authuser', $this->req->acak($userData->id), time() + (86400 * 30));
-
                 redirect('admin/dashboard', 'refresh');
-            
             } else {
                 
                 // $this->req->print($_POST);
-                $this->session->set_flashdata('warning', "Akun anda tidak aktif");
+                $this->session->set_flashdata('warning', "Username atau Password Salah");
                 redirect('admin/login', 'refresh');
             }
         } else {

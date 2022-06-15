@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    table = $('#list_anggota').DataTable({
+    table = $('#list_user').DataTable({
         "processing": true,
         "serverSide": true,
         "order": [],
 
         "ajax": {
-            "url": baseUrl + 'admin/anggota/data',
+            "url": baseUrl + 'admin/user/data',
             "type": "POST",
             "complete": function() {},
             "error": function(error) {
@@ -34,10 +34,10 @@ $(document).ready(function() {
     });
 })
 
-$('#list_anggota').on('click', '#edit', function() {
+$('#list_user').on('click', '#edit', function() {
     let id = $(this).data('id');
     $.ajax({
-        url: baseUrl + 'admin/anggota/get/' + id,
+        url: baseUrl + 'admin/user/get/' + id,
         type: "GET",
         success: function(result) {
             response = JSON.parse(result)
@@ -66,13 +66,13 @@ function image(image) {
     image.src = file;
 }
 
-$('#list_anggota').on('click', '#delete', function() {
+$('#list_user').on('click', '#delete', function() {
     let id = $(this).data('id');
     confirmSweet("Data akan terhapus secara permanen !")
         .then(result => {
             if (result) {
                 $.ajax({
-                    url: baseUrl + 'admin/anggota/delete/' + id,
+                    url: baseUrl + 'admin/user/delete/' + id,
                     type: "GET",
                     success: function(result) {
                         response = JSON.parse(result)
@@ -93,10 +93,10 @@ $('#list_anggota').on('click', '#delete', function() {
         })
 })
 
-$("#formAddanggota").submit(function(e) {
+$("#formAdduser").submit(function(e) {
     e.preventDefault();
     $.ajax({
-        url: baseUrl + "admin/anggota/insert",
+        url: baseUrl + "admin/user/insert",
         type: "post",
         data: new FormData(this),
         processData: false,
@@ -124,10 +124,10 @@ $("#formAddanggota").submit(function(e) {
     });
 })
 
-$("#formEditanggota").submit(function(e) {
+$("#formEdituser").submit(function(e) {
     e.preventDefault();
     $.ajax({
-        url: baseUrl + "admin/anggota/update",
+        url: baseUrl + "admin/user/update",
         type: "post",
         data: new FormData(this),
         processData: false,
@@ -160,13 +160,13 @@ $("#formEditanggota").submit(function(e) {
 })
 
 
-$('#list_anggota').on('click', '#on', function() {
+$('#list_user').on('click', '#on', function() {
     let id = $(this).data('id');
     confirmSweet("Data akan dinon-aktifkan  !")
         .then(result => {
             if (result) {
                 $.ajax({
-                    url: baseUrl + 'admin/anggota/set/' + id + "/off",
+                    url: baseUrl + 'admin/user/set/' + id + "/off",
                     type: "GET",
                     success: function(result) {
                         response = JSON.parse(result)
@@ -187,13 +187,13 @@ $('#list_anggota').on('click', '#on', function() {
         })
 })
 
-$('#list_anggota').on('click', '#off', function() {
+$('#list_user').on('click', '#off', function() {
     let id = $(this).data('id');
     confirmSweet("Data akan diaktifkan  !")
         .then(result => {
             if (result) {
                 $.ajax({
-                    url: baseUrl + 'admin/anggota/set/' + id + "/on",
+                    url: baseUrl + 'admin/user/set/' + id + "/on",
                     type: "GET",
                     success: function(result) {
                         response = JSON.parse(result)
@@ -214,13 +214,13 @@ $('#list_anggota').on('click', '#off', function() {
         })
 })
 
-$('#list_anggota').on('click', '#reset', function() {
+$('#list_user').on('click', '#reset', function() {
     let id = $(this).data('id');
     confirmSweet("Kata Sandi Data akan direset !")
         .then(result => {
             if (result) {
                 $.ajax({
-                    url: baseUrl + 'admin/anggota/set/' + id + "/reset",
+                    url: baseUrl + 'admin/user/set/' + id + "/reset",
                     type: "GET",
                     success: function(result) {
                         response = JSON.parse(result)

@@ -1,16 +1,15 @@
 <?php
 
+class M_user extends CI_Model
+{
 
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class M_matkul extends CI_Model {
 
     function __construct()
     {
         parent::__construct();
-        $this->table = "t_matkul";
-        $this->column_order = array(null, 'nama_matkul', 'kode_matkul');
-        $this->column_search = array('nama_matkul', 'kode_matkul');
+        $this->table = "t_user";
+        $this->column_order = array(null, 'nama_user', 'username' ,'keterangan');
+        $this->column_search = array('nama_user', 'username' ,'keterangan');
         $this->order = array('id' => 'desc');
     }
 
@@ -18,7 +17,6 @@ class M_matkul extends CI_Model {
     {
 
         $this->db->from($this->table);
-        $this->db->where('id_user', $_SESSION['id_user']);
         
 
         $i = 0;
@@ -69,50 +67,6 @@ class M_matkul extends CI_Model {
         return $this->db->count_all_results();
     }
 
-
-    public function cekMatkul($kode)
-    {
-        $this->db->from('t_matkul');
-        $this->db->where('kode_matkul', $kode);
-        return $this->db->get()->row();
-    }
-
-
-    public function storeMatkul($data)
-    {
-        return $this->db->insert('t_matkul', $data);        
-    }
-
-    public function updateMatkul()
-    {
-        # code...
-    }
-
-    public function deleteMatkul($kode)
-    {
-        $this->db->where('id', $kode);
-        $this->db->delete('t_matkul');
-    }
-
-    public function getMatkul($limit = NULL)
-    {
-        $this->db->from('t_matkul');
-        if ($limit != NULL) {
-            $this->db->limit($limit);
-        }
-        $this->db->where('id_user', $_SESSION['id_user']);
-        return $this->db->get()->result();
-    }
-
-    
-    function delete($where)
-    {
-        $this->db->where($where);
-        $this->db->delete($this->table);
-        return $this->cekPerubahan();
-    }
-
-    
     function cekPerubahan()
     {
         if ($this->db->affected_rows() > 0) {
@@ -122,17 +76,37 @@ class M_matkul extends CI_Model {
         }
     }
 
-    public function getTotalMatkul()
+    function insert($data)
     {
-        $this->db->from('t_matkul');
-        $this->db->where('id', $_SESSION['id_user']);
-        return $this->db->get()->num_rows();
-        
+        $this->db->insert($this->table, $data);
+        return $this->cekPerubahan();
     }
 
+    function get($id)
+    {
+        return $this->db->get_where($this->table, $this->req->id($id))->row();
+    }
 
+    function update($data, $where)
+    {
+        $this->db->where($where);
+        $this->db->update('t_user', $data);
+        return $this->cekPerubahan();
+    }
 
+    function delete($where)
+    {
+        $this->db->where($where);
+        $this->db->delete($this->table);
+        return $this->cekPerubahan();
+    }
 
+    function data_user()
+    {
+        $this->db->select('*');
+        $this->db->from('t_user');
+        $this->db->order_by('user', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
-
-/* End of file M_matkul.php */

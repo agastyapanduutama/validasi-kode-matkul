@@ -48,6 +48,28 @@
                  
                 
 
+                <?php if ($_SESSION['level'] == 1):?>
+                <li class="sidebar-item <?php if ($this->uri->segment(2) == 'user') {
+                                            echo "active";
+                                        } ?>">
+                    <a href="<?= base_url('admin/user') ?>" class='sidebar-link'>
+                        <i class="fas fa-users"></i>
+                        <span>User</span>
+                    </a>
+                </li>
+                <?php endif?>
+                
+                <li class="sidebar-item <?php if ($this->uri->segment(2) == 'profil') {
+                                            echo "active";
+                                        } ?>">
+                    <a href="<?= base_url('admin/profil') ?>" class='sidebar-link'>
+                        <i class="fas fa-cogs"></i>
+                        <span>Ganti kata Sandi</span>
+                    </a>
+                </li>
+
+                 
+
                 <li class="sidebar-item <?php if ($this->uri->segment(2) == 'logout') {echo "active";} ?>">
                     <a href="<?= base_url('admin/logout') ?>" class='sidebar-link'>
                     <i class="fas fa-sign-out-alt"></i>

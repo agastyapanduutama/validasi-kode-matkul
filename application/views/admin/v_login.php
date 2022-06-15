@@ -38,7 +38,7 @@
 
                     ?>
 
-                    <form action="<?= base_url('login/aksi') ?>" method="POST">
+                    <form action="<?= base_url('admin/login/aksi') ?>" method="POST">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input name="username" type="text" class="form-control form-control-xl" placeholder="Username">
                             <div class="form-control-icon">

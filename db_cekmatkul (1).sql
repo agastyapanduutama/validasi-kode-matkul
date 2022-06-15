@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2022 at 04:56 PM
+-- Generation Time: Jun 15, 2022 at 03:48 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -37,13 +37,6 @@ CREATE TABLE `t_matkul` (
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `t_matkul`
---
-
-INSERT INTO `t_matkul` (`id`, `id_user`, `kode_matkul`, `nama_matkul`, `sks`, `tahun_kurikulum`, `status`) VALUES
-(4, 0, 'adw', 'awd', 2, 'qw', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -67,10 +60,7 @@ CREATE TABLE `t_user` (
 
 INSERT INTO `t_user` (`id`, `username`, `password`, `nama_user`, `no_hp`, `level`, `keterangan`, `status`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '', 1, '0', '1'),
-(189, 'dosen', 'ce28eed1511f631af6b2a7bb0a85d636', 'Dosen', '', 2, '0', '1'),
-(190, 'mahasiswa', '5787be38ee03a9ae5360f54d9026465f', 'mahasiswa', '', 3, '0', '1'),
-(191, 'dos', '202cb962ac59075b964b07152d234b70', 'dos', '', 2, '', '1'),
-(193, 'mah', '202cb962ac59075b964b07152d234b70', 'mah', '', 3, '', '1');
+(189, 'dosen', '202cb962ac59075b964b07152d234b70', 'Dosen', '', 2, '0', '1');
 
 --
 -- Indexes for dumped tables
@@ -96,13 +86,13 @@ ALTER TABLE `t_user`
 -- AUTO_INCREMENT for table `t_matkul`
 --
 ALTER TABLE `t_matkul`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

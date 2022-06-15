@@ -94,13 +94,18 @@ class C_matkul extends CI_Controller {
 
     public function storeMatkul()
     {
+       
+
         $kode = $this->input->post('kode_matkul');
         $data = $this->matkul->cekMatkul($kode);
         if($data != ""){
             $this->session->set_flashdata('warning', 'Kode Matkul Sudah digunakan oleh matkul ' . $data->kode_matkul . " - " . $data->nama_matkul);
             redirect('admin/matkul','refresh');
         }else{
-            $data = $this->req->all();
+            $custom = [
+                'id_user' => $_SESSION['id_user']
+            ];
+            $data = $this->req->all($custom);
             $this->matkul->storeMatkul($data);
             $this->session->set_flashdata('success', 'Berhasil Menambahkan Data');
             redirect('admin/matkul','refresh');

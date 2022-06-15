@@ -75,3 +75,19 @@ $route['admin/list_matkul'] = 'admin/C_matkul/list';
 //jenis
 $route['admin/matkul/data'] = 'admin/C_matkul/data';
 $route['admin/matkul/delete/(:any)'] = 'admin/C_matkul/delete/$1';
+
+
+// Pengaturan Kata Sandi Admin
+$route['admin/profil'] = 'admin/C_home/profil';
+$route['admin/password/aksi'] = 'admin/C_home/updatePass';
+
+//user
+$route['admin/user'] = 'admin/C_user/list';
+$route['admin/user/data'] = 'admin/C_user/data';
+$route['admin/user/get/(:any)'] = 'admin/C_user/get/$1';
+$route['admin/user/set/(:any)/(:any)'] = 'admin/C_user/set/$1/$2';
+$route['admin/user/insert'] = 'admin/C_user/insert';
+$route['admin/user/update'] = 'admin/C_user/update';
+$route['admin/user/delete/(:any)'] = 'admin/C_user/delete/$1';
+$route['admin/user/tambah'] = 'admin/C_user/tambahData';
+$route['admin/user/edit/(:any)'] = 'admin/C_user/editData/$1';
