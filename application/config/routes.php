@@ -74,6 +74,7 @@ $route['admin/list_matkul'] = 'admin/C_matkul/list';
 
 //jenis
 $route['admin/matkul/data'] = 'admin/C_matkul/data';
+$route['admin/matkul/insert'] = 'admin/C_matkul/insert';
 $route['admin/matkul/delete/(:any)'] = 'admin/C_matkul/delete/$1';
 
 

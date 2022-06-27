@@ -31,6 +31,10 @@ $(document).ready(function() {
                 "orderable": true
             },
         ],
+        "dom": 'Blfrtip',
+        "buttons": [
+            'csv', 'excel', 'pdf', 'print'
+        ],
     });
 })
 
@@ -59,4 +63,67 @@ $('#list_matkul').on('click', '#delete', function() {
                 })
             }
         })
+})
+
+
+$("#tambahMatkul").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: baseUrl + "admin/matkul/insert",
+        type: "post",
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        cache: false,
+        beforeSend: function() {
+            // disableButton()
+        },
+        complete: function() {
+            enableButton()
+        },
+        success: function(result) {
+            let response = JSON.parse(result)
+            if (response.status == "fail") {
+                msgSweetError(response.msg)
+            } else {
+                table.ajax.reload(null, false)
+                msgSweetSuccess(response.msg)
+                clearInput($("input"))
+            }
+        },
+        error: function(event) {
+            errorCode(event)
+        }
+    });
+})
+
+$("#cekhMatkul").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: baseUrl + "admin/matkul/cek",
+        type: "post",
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        cache: false,
+        beforeSend: function() {
+            // disableButton()
+        },
+        complete: function() {
+            enableButton()
+        },
+        success: function(result) {
+            let response = JSON.parse(result)
+            if (response.status == "fail") {
+                msgSweetError(response.msg)
+            } else {
+                table.ajax.reload(null, false)
+                msgSweetSuccess(response.msg)
+                clearInput($("input"))
+            }
+        },
+        error: function(event) {
+            errorCode(event)
+        }
+    });
 })

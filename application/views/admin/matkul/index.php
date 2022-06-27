@@ -18,7 +18,7 @@
                     ?>
     </div>
     <div class="card-body">
-        <form action="<?= base_url('admin/matkul/cek')?>" method="POST">
+        <form id="cekhMatkul" method="POST">
             <div class="form-group row"> 
                 <label for="" class="col-3">Cek Matakuliah</label>
                 <div class="col-9">
@@ -34,7 +34,7 @@
         <h5>Tambah Matakuliah</h5>
     </div>
     <div class="card-body">
-    <form action="<?= base_url('admin/matkul/tambah/aksi')?>" method="POST">
+    <form id="tambahMatkul" method="POST">
        <div class="form-group row"> 
             <label for="" class="col-3">Kode Matakuliah <span style="color:red">*</span></label>
             <div class="col-9">
@@ -52,14 +52,21 @@
         <div class="form-group row"> 
             <label for="" class="col-3">SKS <span style="color:red">*</span></label>
             <div class="col-9">
-                <input type="number" name="sks" class="form-control" required placeholder="5">
+                <input type="number" name="sks" class="form-control" required placeholder="Contoh : 3 (Hanya Bisa Angka)">
             </div>
         </div>
 
         <div class="form-group row"> 
             <label for="" class="col-3">Tahun Kurikulum <span style="color:red">*</span></label>
             <div class="col-9">
-                <input type="text" name="tahun_kurikulum" class="form-control" required placeholder="2021/2022">
+                <select name="tahun_kurikulum" class="form-control" id="tahun_kurikulum">
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+                <!-- <input type="text" name="tahun_kurikulum" class="form-control" required placeholder="2021/2022"> -->
             </div>
         </div>
         <button class="btn btn-success"><i class="fas fa-save"></i>Tambah</button>
@@ -73,7 +80,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table id="list_matkul" class="table table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -84,18 +91,7 @@
                         <th>Aksi</th>
                 </thead>
                 <tbody>
-                    <?php $no=1; foreach ($matkul as $ma):?>
-                        <tr>
-                            <td><?= $no++?></td>
-                            <td><?= $ma->kode_matkul?></td>
-                            <td><?= $ma->nama_matkul?></td>
-                            <td><?= $ma->sks?></td>
-                            <td><?= $ma->tahun_kurikulum?></td>
-                            <td>
-                                <a href="<?= base_url("admin/matkul/hapus/$ma->id")?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                    <?php endforeach?>
+                    
                 </tbody>
                 <tfoot>
                     <tr>

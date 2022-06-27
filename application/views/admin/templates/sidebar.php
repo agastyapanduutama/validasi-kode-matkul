@@ -45,6 +45,15 @@
                     </a>
                 </li>
 
+                <!-- <li class="sidebar-item <?php if ($this->uri->segment(3) == 'duplikat') {
+                                            echo "active";
+                                        } ?>">
+                    <a href="<?= base_url('admin/matkul/duplikat') ?>" class='sidebar-link'>
+                        <i class="fas fa-book"></i>
+                        <span>Matakuliah Duplikat</span>
+                    </a>
+                </li> -->
+
                  
                 
 

@@ -9,8 +9,8 @@ class M_matkul extends CI_Model {
     {
         parent::__construct();
         $this->table = "t_matkul";
-        $this->column_order = array(null, 'nama_matkul', 'kode_matkul');
-        $this->column_search = array('nama_matkul', 'kode_matkul');
+        $this->column_order = array(null, 'nama_matkul', 'kode_matkul' , 'sks' ,'tahun_kurikulum');
+        $this->column_search = array('nama_matkul', 'kode_matkul' , 'sks' ,'tahun_kurikulum');
         $this->order = array('id' => 'desc');
     }
 

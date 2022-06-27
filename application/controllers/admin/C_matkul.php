@@ -18,6 +18,7 @@ class C_matkul extends CI_Controller {
         $data = array(
             'matkul' => $matkul,
             'title'  => 'matkul',
+            'script' => 'matkul',
             'menu'   => 'matkul',
             'konten' => 'admin/matkul/index'
         );
@@ -77,13 +78,28 @@ class C_matkul extends CI_Controller {
     {
         $kode = $this->input->post('kode_matkul');
         $data = $this->matkul->cekMatkul($kode);
+        // if($data != ""){
+        //     $this->session->set_flashdata('warning', 'Kode Matkul Sudah digunakan ' . $data->kode_matkul . "  " . $data->nama_matkul);
+        //     redirect('admin/matkul','refresh');
+        // }else{
+        //     $this->session->set_flashdata('success', 'Kode tersedia');
+        //     redirect('admin/matkul','refresh');
+        // }
+
         if($data != ""){
-            $this->session->set_flashdata('warning', 'Kode Matkul Sudah digunakan ' . $data->kode_matkul . "  " . $data->nama_matkul);
-            redirect('admin/matkul','refresh');
+            $msg = array(
+                'status' => 'fail',
+                'msg' => 'Kode Matkul Sudah digunakan oleh matkul ' . $data->kode_matkul . " - " . $data->nama_matkul
+            );
+
         }else{
-            $this->session->set_flashdata('success', 'Kode tersedia');
-            redirect('admin/matkul','refresh');
+            $msg = array(
+                'status' => 'ok',
+                'msg' => 'kode Matakuliah bisa digunakan'
+            );
         }
+        
+        echo json_encode($msg);
 
     }
 
@@ -110,6 +126,41 @@ class C_matkul extends CI_Controller {
             $this->session->set_flashdata('success', 'Berhasil Menambahkan Data');
             redirect('admin/matkul','refresh');
         }
+    }
+
+    public function insert()
+    {
+       
+
+        $kode = $this->input->post('kode_matkul');
+        $data = $this->matkul->cekMatkul($kode);
+        if($data != ""){
+
+            // $this->session->set_flashdata('warning', 'Kode Matkul Sudah digunakan oleh matkul ' . $data->kode_matkul . " - " . $data->nama_matkul);
+            // redirect('admin/matkul','refresh');
+
+            $msg = array(
+                'status' => 'fail',
+                'msg' => 'Kode Matkul Sudah digunakan oleh matkul ' . $data->kode_matkul . " - " . $data->nama_matkul
+            );
+
+        }else{
+            $custom = [
+                'id_user' => $_SESSION['id_user']
+            ];
+
+            $data = $this->req->all($custom);
+            $this->matkul->storeMatkul($data);
+            $msg = array(
+                'status' => 'ok',
+                'msg' => 'Berhasil menambahkan matakuliah!'
+            );
+
+            // $this->session->set_flashdata('success', 'Berhasil Menambahkan Data');
+            // redirect('admin/matkul','refresh');
+        }
+        
+        echo json_encode($msg);
     }
 
     public function deleteMatkul($id)

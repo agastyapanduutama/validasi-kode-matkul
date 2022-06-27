@@ -12,7 +12,7 @@ if ($this->session->id_user == '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?> - Bingkaikodeku</title>
+    <title><?= $title ?> - UNISA Bandung</title>
     <meta name="baseUrl" content="<?= base_url() ?>">
     <meta name="menu" content="<?= (isset($menu)) ? $menu : null ?>">
 
@@ -163,12 +163,12 @@ if ($this->session->id_user == '') {
             $('#example2').DataTable()
             $('#example3').DataTable()
             $('#example4').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
+                'paging'      : true,
+                'lengthChange': false,
+                'searching'   : false,
+                'ordering'    : true,
+                'info'        : true,
+                'autoWidth'   : false
             })
         });
     </script>
@@ -217,6 +217,15 @@ if ($this->session->id_user == '') {
         chartProfileVisit.render();
     </script>
     <?php endif?>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 
     <script src="<?= base_url() ?>assets/admin/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
