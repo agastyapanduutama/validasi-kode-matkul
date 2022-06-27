@@ -186,6 +186,57 @@ class C_matkul extends CI_Controller {
             echo json_encode($msg);
         }
 
+     function deleteDuplikat($id)
+        {
+            if ($this->matkul->deleteMatkul($id) == true) {
+                $msg = array(
+                    'status' => 'ok',
+                    'msg' => 'Berhasil menghapus data !'
+                );
+               $this->session->set_flashdata('success', 'Berhasil Menghapus data');               
+            } else {
+                $msg = array(
+                    'status' => 'fail',
+                    'msg' => 'Gagal menghapus data !'
+                );
+                $this->session->set_flashdata('Warning', 'Gagal saat menghapus data');               
+            }
+            
+            echo json_encode($msg);
+            // echo $this->db->last_query();
+            
+        }
+
+    public function duplikat()
+    {
+        $matkul = $this->matkul->ambilDuplikat();
+        // $this->req->print($matkul);
+
+        $data = array(
+            'matkul' => $matkul,
+            'title' => "Kode Matkul Duplikat" , 
+            'konten' => 'admin/matkul/duplikat',
+        );
+
+        $this->load->view('admin/templates/template', $data, FALSE);
+        
+    }
+
+    public function detailMatkulDuplikat($kode)
+    {
+        $matkul = $this->matkul->detailDuplikat($kode);
+        // $this->req->print($matkul);
+
+        $data = array(
+            'script' => 'matkul',
+            'matkul' => $matkul,
+            'title' => "Kode Matkul Duplikat" , 
+            'konten' => 'admin/matkul/duplikatDetail',
+        );
+
+        $this->load->view('admin/templates/template', $data, FALSE);
+    }
+
 
 }
 

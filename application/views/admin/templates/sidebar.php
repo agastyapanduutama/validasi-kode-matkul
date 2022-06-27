@@ -45,6 +45,24 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item <?php if ($this->uri->segment(2) == 'import') {
+                                            echo "active";
+                                        } ?>">
+                    <a href="<?= base_url('admin/import/create') ?>" class='sidebar-link'>
+                        <i class="fas fa-upload"></i>
+                        <span>Upload Matkul</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item <?php if ($this->uri->segment(2) == 'duplikat') {
+                                            echo "active";
+                                        } ?>">
+                    <a href="<?= base_url('admin/duplikat') ?>" class='sidebar-link'>
+                        <i class="fas fa-clone"></i>
+                        <span>Matkul Duplikat</span>
+                    </a>
+                </li>
+
                 <!-- <li class="sidebar-item <?php if ($this->uri->segment(3) == 'duplikat') {
                                             echo "active";
                                         } ?>">

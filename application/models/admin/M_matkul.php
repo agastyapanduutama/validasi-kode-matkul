@@ -130,6 +130,16 @@ class M_matkul extends CI_Model {
         
     }
 
+    public function ambilDuplikat()
+    {
+        return $this->db->query("SELECT id, kode_matkul, nama_matkul, sks, tahun_kurikulum, COUNT(*) as banyak FROM t_matkul GROUP BY kode_matkul HAVING banyak > 1 ")->result();        
+    }
+
+    public function detailDuplikat($kode)
+    {
+        return $this->db->get_where('t_matkul', ['kode_matkul' => $kode])->result();   
+    }
+
 
 
 

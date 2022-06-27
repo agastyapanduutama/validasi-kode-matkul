@@ -66,6 +66,37 @@ $('#list_matkul').on('click', '#delete', function() {
 })
 
 
+$('#list_matkulNa').on('click', '#delete', function() {
+    let id = $(this).data('id');
+    console.log(id)
+    confirmSweet("Data akan terhapus secara permanen !")
+        .then(result => {
+            if (result) {
+                $.ajax({
+                    url: baseUrl + 'admin/duplikat/delete/' + id,
+                    type: "GET",
+                    success: function(result) {
+                        response = JSON.parse(result)
+                        if (response.status == 'ok') {
+                            table.ajax.reload(null, false)
+                            msgSweetSuccess(response.msg)
+                            location.reload();
+                            // msgSweetSuccess(response.msg)
+                        } else {
+                            location.reload();
+                            msgSweetWarning(response.msg)
+                                // msgSweetError(response.msg)
+                        }
+                    },
+                    error: function(error) {
+                        errorCode(error)
+                    }
+                })
+            }
+        })
+})
+
+
 $("#tambahMatkul").submit(function(e) {
     e.preventDefault();
     $.ajax({

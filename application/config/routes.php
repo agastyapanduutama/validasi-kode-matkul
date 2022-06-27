@@ -71,8 +71,14 @@ $route['admin/matkul/tambah/aksi'] = 'admin/C_matkul/storeMatkul';
 $route['admin/matkul/hapus/(:any)'] = 'admin/C_matkul/deleteMatkul/$1';
 $route['admin/list_matkul'] = 'admin/C_matkul/list';
 
+$route['admin/import'] = 'admin/C_import/create';
+$route['admin/import/create'] = 'admin/C_import/create';
+$route['admin/import/create/action'] = 'admin/C_import/excel';
 
 //jenis
+$route['admin/duplikat'] = 'admin/C_matkul/duplikat';
+$route['admin/duplikat/lihat/(:any)'] = 'admin/C_matkul/detailMatkulDuplikat/$1';
+$route['admin/duplikat/delete/(:any)'] = 'admin/C_matkul/deleteDuplikat/$1';
 $route['admin/matkul/data'] = 'admin/C_matkul/data';
 $route['admin/matkul/insert'] = 'admin/C_matkul/insert';
 $route['admin/matkul/delete/(:any)'] = 'admin/C_matkul/delete/$1';
